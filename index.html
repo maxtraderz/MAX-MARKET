@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MAX MARKET offers premium trading bots for forex, gold, crypto, and funded account traders.">
+  <meta name="keywords" content="MAX MARKET, trading bots, forex EA, MT4 bot, MT5 bot, crypto trading bot, gold trading bot">
+  <meta name="author" content="MAX MARKET">
+  <meta property="og:title" content="MAX MARKET - Smart Trading Bots">
+  <meta property="og:description" content="Automated trading bots built for serious traders.">
+  <meta property="og:type" content="website">
+  <title>MAX MARKET | Smart Trading Bots</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header" id="home">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="MAX MARKET home">
+        <span class="brand-mark"><img src="assets/max-traderz-logo.jpg" alt="MAX TRADERZ logo"></span>
+        <span>MAX MARKET</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#bots">Bots</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
+          <span class="theme-icon" aria-hidden="true">&#9790;</span>
+          <span class="theme-label">Theme</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-pad" aria-labelledby="hero-title">
+      <div class="glow glow-one"></div>
+      <div class="glow glow-two"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Trading Software Brand</p>
+        <h1 id="hero-title">MAX MARKET</h1>
+        <p class="tagline">Smart Trading Bots Built for Serious Traders</p>
+        <p class="hero-copy">Explore our automated trading bots designed for forex, gold, crypto, and funded account traders.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#bots">View Bots</a>
+          <a class="btn secondary" id="telegramHeroLink" href="https://t.me/max_traderz" target="_blank" rel="noopener">Contact on Telegram</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Trading bot performance dashboard">
+        <div class="terminal-top">
+          <span></span>
+          <span></span>
+          <span></span>
+          <strong>MAX AI BOT</strong>
+        </div>
+        <div class="chart-grid">
+          <div class="price-line"></div>
+          <div class="signal signal-one">BUY</div>
+          <div class="signal signal-two">PROTECT</div>
+          <div class="metric-card metric-one">
+            <small>Daily Control</small>
+            <strong>Active</strong>
+          </div>
+          <div class="metric-card metric-two">
+            <small>Risk Mode</small>
+            <strong>Smart</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bots-section section-pad" id="bots" aria-labelledby="bots-title">
+      <div class="section-heading">
+        <p class="eyebrow">Bot Showcase</p>
+        <h2 id="bots-title">Choose Your Trading Bot</h2>
+        <p>Compare markets, risk style, price, and features before messaging us.</p>
+      </div>
+
+      <label class="search-wrap" for="botSearch">
+        <span>Search bots</span>
+        <input id="botSearch" type="search" placeholder="Search by bot, market, or risk..." autocomplete="off">
+      </label>
+
+      <div class="bot-grid" id="botGrid" aria-live="polite"></div>
+      <p class="empty-state" id="emptyState" hidden>No bots found. Try another search.</p>
+    </section>
+
+    <section class="steps-section section-pad" id="how-it-works" aria-labelledby="steps-title">
+      <div class="section-heading">
+        <p class="eyebrow">How It Works</p>
+        <h2 id="steps-title">From Bot Choice To Setup</h2>
+      </div>
+      <div class="steps-grid">
+        <article class="step-card">
+          <span>01</span>
+          <h3>Choose your bot</h3>
+          <p>Review the bot cards and pick the setup that matches your market and risk style.</p>
+        </article>
+        <article class="step-card">
+          <span>02</span>
+          <h3>Click Get This Bot</h3>
+          <p>Your selected bot name is copied so you can paste it directly in Telegram.</p>
+        </article>
+        <article class="step-card">
+          <span>03</span>
+          <h3>Message us on Telegram</h3>
+          <p>Send your request and ask for full details, pricing, and setup guidance.</p>
+        </article>
+        <article class="step-card">
+          <span>04</span>
+          <h3>Get setup and support</h3>
+          <p>Receive bot setup help, usage guidance, and support after purchase.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section section-pad" id="contact" aria-labelledby="contact-title">
+      <div class="section-heading">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Connect With MAX MARKET</h2>
+        <p>Use the official social links below for updates and direct messages.</p>
+      </div>
+      <div class="social-grid" id="socialLinks"></div>
+    </section>
+
+    <section class="disclaimer" aria-label="Risk disclaimer">
+      <strong>Risk Disclaimer:</strong>
+      <span>Our bots are designed for low to medium risk trading. If you use high-risk settings, you are fully responsible for the results. MAX MARKET is not responsible for losses caused by aggressive risk, wrong settings, broker issues, or market volatility. Trading involves risk and profit is not guaranteed.</span>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> MAX MARKET. All rights reserved.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
