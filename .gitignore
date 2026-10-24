@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+.local/
+.env*
+*.tsbuildinfo
+private/
+test-results/
+playwright-report/
+*.tar.gz
+*.zip
