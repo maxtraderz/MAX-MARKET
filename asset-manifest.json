@@ -1,0 +1,167 @@
+[
+  {
+    "source": "certificates (1).png",
+    "output": "public/images/certificates/proof-01.webp",
+    "redaction": [
+      0.47,
+      0.45,
+      0.9,
+      0.58
+    ],
+    "width": 1764,
+    "height": 1368,
+    "sha256": "514091360f16907b7ffd71e7236f8253f1871881f4611412766a05fa201d5ceb"
+  },
+  {
+    "source": "certificates (2).png",
+    "output": "public/images/certificates/proof-02.webp",
+    "redaction": [
+      0.3,
+      0.36,
+      0.67,
+      0.46
+    ],
+    "width": 2200,
+    "height": 1458,
+    "sha256": "23c036f1bcb1acb0ed6274f463893a24bf2eebfed1c454115a996f2721bd2821"
+  },
+  {
+    "source": "certificates (3).png",
+    "output": "public/images/certificates/proof-03.webp",
+    "redaction": [
+      0.33,
+      0.385,
+      0.68,
+      0.48
+    ],
+    "width": 1764,
+    "height": 1269,
+    "sha256": "e4104123043db91de431e8b2bad53866672f7d7ae0cff5611a255d3ce997f4e4"
+  },
+  {
+    "source": "certificates (4).png",
+    "output": "public/images/certificates/proof-04.webp",
+    "redaction": [
+      0.33,
+      0.39,
+      0.68,
+      0.48
+    ],
+    "width": 1581,
+    "height": 1137,
+    "sha256": "b05c8f0956416a460619b328d8085bf6c4cfc0798b54a6d9783ea6bce5637f5e"
+  },
+  {
+    "source": "certificates (5).png",
+    "output": "public/images/certificates/proof-05.webp",
+    "redaction": [
+      0.33,
+      0.39,
+      0.68,
+      0.48
+    ],
+    "width": 1581,
+    "height": 1137,
+    "sha256": "a004b25a8fc370dfa1ecb6c0ed459d2183da25be7058fe708fdc5bbb43ec6852"
+  },
+  {
+    "source": "certificates (6).png",
+    "output": "public/images/certificates/proof-06.webp",
+    "redaction": [
+      0.39,
+      0.31,
+      0.61,
+      0.42
+    ],
+    "width": 1764,
+    "height": 1260,
+    "sha256": "15cc031982d70f3373da95e8dd6d0167c770aab45bfe95f23977380e65dac826"
+  },
+  {
+    "source": "certificates (7).png",
+    "output": "public/images/certificates/proof-07.webp",
+    "redaction": [
+      0.1,
+      0.33,
+      0.26,
+      0.39
+    ],
+    "width": 1764,
+    "height": 1269,
+    "sha256": "fe21bc217e1d7373e54923d186b79022e29b855bbe8afcf9a6c33552c5698c48"
+  },
+  {
+    "source": "certificates (8).png",
+    "output": "public/images/certificates/proof-08.webp",
+    "redaction": [
+      0.4,
+      0.38,
+      0.62,
+      0.46
+    ],
+    "width": 1764,
+    "height": 1233,
+    "sha256": "32efd43bd0a0af1c30e2da8dbce1511164ba9ea4e1a7486002939973cecf400a"
+  },
+  {
+    "source": "certificates (9).png",
+    "output": "public/images/certificates/proof-09.webp",
+    "redaction": [
+      0.306,
+      0.676,
+      0.696,
+      0.793
+    ],
+    "width": 1764,
+    "height": 1134,
+    "sha256": "babd4d8412addf2eaaf46eda3b9efa18b74def9c8852865609ee714e109898e2"
+  },
+  {
+    "source": "WhatsApp Image 2026-10-24 at 9.57.22 AM.png",
+    "output": "public/images/performance/agent-jin-report.webp",
+    "width": 4800,
+    "height": 2814,
+    "processing": "Lossless, original figures preserved; metadata removed"
+  },
+  {
+    "source": "buy video_prob3.mp4",
+    "output": "public/videos/buy-demo.mp4",
+    "processing": "H.264/AAC, 1440px wide, original aspect ratio and audio, faststart; metadata stripped",
+    "poster": "public/images/demos/buy-poster.jpg",
+    "gif": "public/images/demos/buy-demo.gif"
+  },
+  {
+    "source": "sell video_prob3.mp4",
+    "output": "public/videos/sell-demo.mp4",
+    "processing": "H.264/AAC, 1440px wide, original aspect ratio and audio, faststart; metadata stripped",
+    "poster": "public/images/demos/sell-poster.jpg",
+    "gif": "public/images/demos/sell-demo.gif",
+    "gif_processing": "First 9 seconds only, 15 fps, 1080px wide, silent, looping"
+  },
+  {
+    "source": "Original product banner rendered from source commit ae31925a86c16f49e1de52f3f2fd94be5903696a; handwritten annotation excluded",
+    "output": "public/images/products/agent-jin-banner.webp",
+    "type": "Product artwork",
+    "width": 2004,
+    "height": 818,
+    "sha256": "0edc52957c20e575c2901d7ea7ffd16fb419c798f769e2e3e8d6175863ce90fb"
+  },
+  {
+    "source": "Original AGENT JIN vector product artwork with gentle floating motion; box remains closed; reduced-motion fallback",
+    "output": "public/images/products/agent-jin-banner-animated.svg",
+    "type": "Animated product artwork",
+    "width": 2004,
+    "height": 818,
+    "sha256": "85a277fde1bac6464766bd99fb8e5ef3d7145d8b69326d6494794ae577430ce0"
+  },
+  {
+    "source": "Agent-Jin-Promo.mp4",
+    "output": "public/videos/agent-jin-promo.mp4",
+    "processing": "Original H.264 video and AAC audio preserved; full duration; faststart; file metadata removed",
+    "poster": "public/images/demos/agent-jin-promo-poster.jpg",
+    "duration_seconds": 99.366667,
+    "width": 1920,
+    "height": 1080,
+    "sha256": "3ae1b60e591f6a190f7092e39643c2eb310714e787335ac0786d20eb9f81b9bf"
+  }
+]
