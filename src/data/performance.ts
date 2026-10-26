@@ -11,6 +11,6 @@ export const performance = {
     source: 'User-supplied Agent Jin 1.1 (ADMIN VERSION) screenshot.',
     period: '2020–2026, as shown on the report axis; exact end date not supplied.',
     platform: 'TradingView-style strategy report. Execution platform not confirmed.',
-    statusNote: 'Historical report; live versus backtest status has not been independently confirmed. This is a v1.1 admin report, not evidence of v3 performance.',
+    statusNote: 'Historical report; live versus backtest status has not been independently confirmed. This is a v1.1 admin report, not evidence of the advertised products performance.',
   },
 } as const;

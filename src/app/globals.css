@@ -28,3 +28,6 @@
 
 /* Fill the showcase rectangle with its own artwork aspect ratio. */
 .proof-showcase .proof-open{aspect-ratio:1002/409;background:#0a1424}.proof-showcase .certificate-image{object-fit:cover}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;max-width:1000px;margin:auto}.pricing-grid .pricing-card{width:100%;margin:0;min-width:0}.pricing-grid .pricing-card h2{min-height:66px;display:flex;align-items:center;justify-content:center}.offer-soon{display:inline-block;margin:14px 0 0;padding:7px 13px;border:1px solid #f4cfa4;border-radius:100px;background:#fff6e9;color:#95520e;font-size:12px;font-weight:600}.proof-card:not(.proof-showcase) .certificate-image{width:82%;height:82%;margin:auto}.proof-card:not(.proof-showcase) .proof-open{display:flex;align-items:center;justify-content:center}.detail-copy h1{display:block;overflow-wrap:break-word}
+@media(max-width:800px){.pricing-grid{grid-template-columns:1fr;max-width:470px}.pricing-grid .pricing-card h2{min-height:0}.proof-card:not(.proof-showcase) .certificate-image{width:78%;height:78%}}

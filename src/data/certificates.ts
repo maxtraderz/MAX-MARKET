@@ -1,9 +1,9 @@
 export const certificates = Array.from({ length: 9 }, (_, i) => i === 8 ? {
   id: 9,
   src: '/images/products/agent-jin-banner-animated.svg',
-  alt: 'AGENT JIN v3 product banner: A system for your next chapter, with blue product box artwork',
+  alt: 'Agent Jin V1 product banner: A system for your next chapter, with blue product box artwork',
   type: 'Product showcase',
-  issuer: 'AGENT JIN v3',
+  issuer: 'Agent Jin V1',
 } : ({
   id: i + 1,
   src: '/images/certificates/proof-' + String(i + 1).padStart(2, '0') + '.webp',

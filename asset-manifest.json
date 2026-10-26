@@ -152,7 +152,7 @@
     "type": "Animated product artwork",
     "width": 2004,
     "height": 818,
-    "sha256": "85a277fde1bac6464766bd99fb8e5ef3d7145d8b69326d6494794ae577430ce0"
+    "sha256": "c7b79d2053d8aac5e9c163004b1dd109ab24af71140df5efee066e5ffb285670"
   },
   {
     "source": "Agent-Jin-Promo.mp4",
@@ -163,5 +163,12 @@
     "width": 1920,
     "height": 1080,
     "sha256": "3ae1b60e591f6a190f7092e39643c2eb310714e787335ac0786d20eb9f81b9bf"
+  },
+  {
+    "source": "Original code-native JinX ORB Scalper V2 product artwork",
+    "output": "public/images/products/jinx-orb-scalper-v2.svg",
+    "width": 1440,
+    "height": 988,
+    "sha256": "e5d614a7f298040ea99846ffbe29fdb3516500be6bcd58ccc012e7db1b86332f"
   }
 ]

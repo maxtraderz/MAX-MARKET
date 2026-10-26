@@ -26,11 +26,18 @@ try{
   page.on('response',r=>{if(r.status()>=400)console.log('HTTP '+r.status()+' '+r.url());});
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
   await page.goto(base,{waitUntil:'networkidle'});
-  await check('Homepage and configured v3 pricing',async()=>{await page.getByRole('heading',{level:1}).waitFor();assert.match(await page.locator('#pricing').innerText(),/649/);assert.match(await page.locator('#pricing').innerText(),/800/);assert.match(await page.locator('#pricing').innerText(),/18.875%/);assert.equal(await page.locator('#pricing button:disabled').count(),0);});
-  await check('Only Agent Jin remains across the site',async()=>{
+  await check('Homepage and two configured bot offers',async()=>{await page.getByRole('heading',{level:1}).waitFor();assert.match(await page.locator('#pricing').innerText(),/649/);assert.match(await page.locator('#pricing').innerText(),/800/);assert.match(await page.locator('#pricing').innerText(),/18.875%/);assert.equal(await page.locator('#pricing button:disabled').count(),0);});
+  await check('Both bots appear with separate product details',async()=>{
     assert.match(await page.locator('#performance-panel').innerText(),/556,400.62/);
-    assert.equal(await page.locator('#pricing .product-details-link').count(),1);
-    assert.equal(await page.locator('#pricing .pricing-card').count(),1);
+    assert.equal(await page.locator('#pricing .product-details-link').count(),2);
+    assert.equal(await page.locator('#pricing .pricing-card').count(),2);
+    const cards=page.locator('#pricing .pricing-card');
+    assert.match(await cards.nth(0).innerText(),/Agent Jin V1/);
+    assert.match(await cards.nth(1).innerText(),/JinX ORB Scalper V2/);
+    assert.match(await cards.nth(1).innerText(),/599/);
+    assert.match(await cards.nth(1).innerText(),/25%/);
+    assert.equal(await page.locator('#pricing .offer-soon').count(),2);
+    assert.match(await fs.readFile('out/sitemap.xml','utf8'),/jinx-orb-scalper-v2/);
     assert.equal(await page.locator('#strategy [role=tab]').count(),2);
     assert.doesNotMatch(await page.locator('body').innerText(),/MAX BLUE|MAX FLUID/);
     assert.doesNotMatch(await fs.readFile('out/sitemap.xml','utf8'),/max-blue|max-fluid/);
@@ -43,7 +50,10 @@ try{
     const files=await fs.readdir('public/images/certificates');
     assert.deepEqual(files.sort(),Array.from({length:9},(_,i)=>'proof-'+String(i+1).padStart(2,'0')+'.webp'));
     assert.equal(await page.locator('#proof .proof-open').count(),9);
-    const manifest=JSON.parse(await fs.readFile('asset-manifest.json','utf8'));assert.equal(manifest.length,15);
+    const certificate=page.locator('#proof .proof-card:not(.proof-showcase) .certificate-image').first();
+    const frame=await certificate.evaluate(el=>({ratio:el.getBoundingClientRect().width/el.parentElement.getBoundingClientRect().width,aspect:el.parentElement.getBoundingClientRect().width/el.parentElement.getBoundingClientRect().height}));
+    assert.ok(frame.ratio<0.83&&frame.ratio>0.8);assert.ok(Math.abs(frame.aspect-1.65)<0.01);
+    const manifest=JSON.parse(await fs.readFile('asset-manifest.json','utf8'));assert.equal(manifest.length,16);
   });
   await check('Proof carousel arrows and pagination',async()=>{
     const c=page.locator('#proof .carousel').first();await c.scrollIntoViewIfNeeded();
@@ -62,7 +72,7 @@ try{
     const fit=await img.evaluate(el=>({image:el.getBoundingClientRect().width/el.getBoundingClientRect().height,native:el.naturalWidth/el.naturalHeight}));
     assert.ok(Math.abs(fit.image-fit.native)<0.01,'Showcase fills its rectangle without letterboxing');
     await trigger.click();
-    assert.match(await page.getByRole('dialog').innerText(),/Product showcase.*AGENT JIN v3.*9 \/ 9/);
+    assert.match(await page.getByRole('dialog').innerText(),/Product showcase.*Agent Jin V1.*9 \/ 9/);
     await page.keyboard.press('Escape');
   });
   await check('Lightbox keyboard, focus, escape and report enlargement',async()=>{
@@ -84,7 +94,7 @@ try{
     }
   });
   await check('Every product, contact and legal page at mobile and desktop widths',async()=>{
-    for(const route of ['/products/agent-jin/','/contact/','/legal/risk/','/legal/privacy/','/legal/terms/']){
+    for(const route of ['/products/agent-jin/','/products/jinx-orb-scalper-v2/','/contact/','/legal/risk/','/legal/privacy/','/legal/terms/']){
       for(const width of [390,1440]){await page.setViewportSize({width,height:950});const res=await page.goto(base+route,{waitUntil:'networkidle'});assert.equal(res.status(),200);assert.equal(await page.locator('h1').count(),1);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Overflow '+route+' at '+width);}
     }
   });
@@ -122,14 +132,14 @@ try{
   for(const id of ['performance','proof','reviews','strategy','pricing'])await page.locator('#'+id).screenshot({path:'.local/'+id+'-desktop.png',style:'.site-header,.skip-link{visibility:hidden!important}'});
   await page.setViewportSize({width:390,height:844});await page.goto(base,{waitUntil:'networkidle'});await page.screenshot({path:'.local/mobile-final.png'});await page.locator('#proof').screenshot({path:'.local/proof-mobile.png'});
   await check('Client navigation opens product detail pages',async()=>{
-    await page.locator('.product-details-link').click();
-    await page.waitForURL('**/products/agent-jin/');assert.match(await page.locator('h1').innerText(),/AGENT JIN/);
+    await page.locator('.product-details-link').first().click();
+    await page.waitForURL('**/products/agent-jin/');assert.match(await page.locator('h1').innerText(),/Agent Jin V1/);
   });
   await check('Essential content remains visible with JavaScript disabled',async()=>{
     const plain=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
     const doc=await plain.newPage();await doc.goto(base);
     assert.equal(await doc.locator('h1').isVisible(),true);
-    assert.equal(await doc.locator('#pricing h2').isVisible(),true);
+    for(const heading of await doc.locator('#pricing h2').all()) assert.equal(await heading.isVisible(),true);
     await plain.close();
   });
   await check('Three stacked rows, top two autoplay every 5 seconds, pause and reduced motion',async()=>{

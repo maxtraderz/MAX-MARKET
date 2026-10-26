@@ -5,7 +5,7 @@ import { siteConfig } from '@/data/site-config';
 const pages = {
   risk: {title:'Risk disclosure',intro:siteConfig.risk,sections:[
     ['Automation does not remove market risk','Automated systems can experience drawdown, extended losing periods, execution failures, and loss of capital. Slippage, spreads, fees, liquidity, market conditions, and configuration can materially affect outcomes.'],
-    ['Historical report context','The Agent Jin screenshot is a user-supplied v1.1 admin historical report. Its axis is labelled 2020–2026. Exact end dates, assumptions, testing conditions, costs, and live versus backtest status have not been independently confirmed. It is not a verified live profit statement, an independent audit, or evidence of v3 performance.'],
+    ['Historical report context','The Agent Jin screenshot is a user-supplied v1.1 admin historical report. Its axis is labelled 2020–2026. Exact end dates, assumptions, testing conditions, costs, and live versus backtest status have not been independently confirmed. It is not a verified live profit statement, an independent audit, or evidence of performance for either advertised product.'],
     ['Certificate context','The gallery contains supplied prop-firm certificates with recipient details permanently removed. Issuer branding identifies the original issuers. These records are not independently verified, do not establish a business relationship with the issuers, and are not attributed to any jinxlab product.'],
     ['Your decision','Review the complete product specifications and risks before purchasing or trading. Only use capital you can afford to lose. Nothing on this site guarantees an outcome or constitutes personalized investment advice.'],
   ]},

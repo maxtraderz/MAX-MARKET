@@ -24,7 +24,7 @@ export function Header() {
 }
 export function Footer() {
   return <footer className="site-footer"><div className="container"><div className="footer-top"><div className="footer-brand"><Brand/><p>Trading automation.<br/>A structured approach.</p></div>
-    <div><h3>Explore</h3><Link href="/products/agent-jin/">AGENT JIN v3</Link><Link href="/#performance">Performance</Link><Link href="/#proof">Certificate gallery</Link></div>
+    <div><h3>Explore</h3><Link href="/products/agent-jin/">Agent Jin V1</Link><Link href="/products/jinx-orb-scalper-v2/">JinX ORB Scalper V2</Link><Link href="/#performance">Performance</Link><Link href="/#proof">Certificate gallery</Link></div>
     <div><h3>Support</h3><a href={supportHref} target="_blank" rel="noopener noreferrer">Contact on Telegram</a>{siteConfig.contact.email && <a href={'mailto:' + siteConfig.contact.email}>{siteConfig.contact.email}</a>}<Link href="/contact/#installation">Installation help</Link><Link href="/#faq">FAQ</Link></div>
     <div><h3>Legal</h3><Link href="/legal/terms/">Terms of service</Link><Link href="/legal/privacy/">Privacy policy</Link><Link href="/legal/risk/">Risk disclosure</Link></div>
   </div><p className="risk-footer">{siteConfig.risk}</p><div className="footer-bottom"><span>© {new Date().getFullYear()} jinxlab. All rights reserved.</span><a href={supportHref} target="_blank" rel="noopener noreferrer">t.me/jinzfx</a></div></div></footer>;

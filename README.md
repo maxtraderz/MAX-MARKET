@@ -1,6 +1,6 @@
 # jinxlab
 
-Next.js 16 App Router + React + TypeScript + Tailwind. A reference-inspired trading software website for AGENT JIN v3.
+Next.js 16 App Router + React + TypeScript + Tailwind. A reference-inspired trading software website for Agent Jin V1 and JinX ORB Scalper V2.
 
 ## Run and build
 Requires Node 20.9+.
@@ -16,12 +16,12 @@ Development: http://127.0.0.1:3000. Production is a static export in `out/`; ser
 
 ## Content configuration
 - `src/data/site-config.ts`: text-only jinxlab branding, canonical origin, Telegram contact https://t.me/jinzfx.
-- `src/data/products.ts`: AGENT JIN v3, USD 649 offer / USD 800 original price / USD 151 or 18.875% discount; optional genuine checkout URL and licensing information.
+- `src/data/products.ts`: Agent Jin V1 and JinX ORB Scalper V2, Agent Jin V1: USD 649 (was USD 800); JinX ORB Scalper V2: USD 599 (was USD 800, save USD 201 / 25%). Both show Offer closes soon; optional genuine checkout URL and licensing information.
 - `src/data/demos.ts`: supplied buy and sell videos and posters.
 - `src/data/testimonials.ts`: 14 owner-supplied reviews and five-star ratings. No dates or independent verification were provided; none are invented.
 - `src/data/performance.ts`: supplied historical v1.1 admin report and its source limitations.
 - `src/data/faqs.ts`: editable answers.
-- `src/data/certificates.ts`: nine permanently anonymized certificate images.
+- `src/data/certificates.ts`: eight displayed anonymized certificates across two slideshows, with a floating product banner in the third frame.
 
 ## Design and interactions
 The reference was inspected live on 24 October 2026. Its Montserrat family, 700-weight headlines, centered media, blue gradients, rounded cards, review layout, feature rows and pricing composition informed the implementation. The licensed Montserrat variable font is self-hosted; its OFL is in `public/fonts/`.
