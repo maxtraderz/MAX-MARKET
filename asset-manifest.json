@@ -170,5 +170,12 @@
     "width": 1440,
     "height": 988,
     "sha256": "e5d614a7f298040ea99846ffbe29fdb3516500be6bcd58ccc012e7db1b86332f"
+  },
+  {
+    "source": "Original Agent Jin V1 product artwork matching the ORB product card style",
+    "output": "public/images/products/agent-jin-v1.svg",
+    "width": 1440,
+    "height": 988,
+    "sha256": "e0bfe9382780971d1edbd14ebda22ecccc0ffa102746800364bda41b21040b3f"
   }
 ]

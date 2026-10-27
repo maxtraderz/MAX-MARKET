@@ -84,7 +84,7 @@ export function FeaturesSection() {
   return <section className="section features-section" id="features"><div className="container"><SectionHeading eyebrow="" title="Explore the Details of" blue="Agent Jin V1">The evidence, information, and next steps in one place.</SectionHeading><div className="features-grid">{features.map(({icon:Icon,title,copy}) => <Reveal key={title}><article className="feature-card"><span className="feature-icon"><Icon size={21}/></span><h3>{title}</h3><p>{copy}</p></article></Reveal>)}</div></div></section>;
 }
 export function ProductArtwork({ product, priority = false }: { product: Product; priority?: boolean }) {
-  return <div className="product-artwork"><Image src={product.image} alt={product.slug === 'agent-jin' ? 'Supplied Agent Jin buy demonstration chart' : product.name + ' product artwork'} width={1440} height={988} sizes="(max-width:767px) 94vw, 560px" loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'}/></div>;
+  return <div className="product-artwork"><Image src={product.image} alt={product.name + ' product artwork'} width={1440} height={988} sizes="(max-width:767px) 94vw, 560px" loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'}/></div>;
 }
 export function PurchaseAction({ product }: { product: Product }) {
   return <><AccessCTA/><p className="purchase-note">Discuss {product.name} access on Telegram. No payment is collected here.</p></>;

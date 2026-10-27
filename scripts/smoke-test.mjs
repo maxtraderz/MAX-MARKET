@@ -53,7 +53,7 @@ try{
     const certificate=page.locator('#proof .proof-card:not(.proof-showcase) .certificate-image').first();
     const frame=await certificate.evaluate(el=>({ratio:el.getBoundingClientRect().width/el.parentElement.getBoundingClientRect().width,aspect:el.parentElement.getBoundingClientRect().width/el.parentElement.getBoundingClientRect().height}));
     assert.ok(frame.ratio<0.83&&frame.ratio>0.8);assert.ok(Math.abs(frame.aspect-1.65)<0.01);
-    const manifest=JSON.parse(await fs.readFile('asset-manifest.json','utf8'));assert.equal(manifest.length,16);
+    const manifest=JSON.parse(await fs.readFile('asset-manifest.json','utf8'));assert.equal(manifest.length,17);
   });
   await check('Proof carousel arrows and pagination',async()=>{
     const c=page.locator('#proof .carousel').first();await c.scrollIntoViewIfNeeded();
