@@ -1,19 +1,23 @@
 'use client';
+import { WhatsAppLink } from '@/components/WhatsAppLink';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useReducedMotion } from 'motion/react';
 import { ArrowUpRight, Check, ScanLine, ShieldCheck, SlidersHorizontal, PanelsTopLeft, ChartNoAxesCombined, Headphones, Star, ChevronDown, ChevronLeft, ChevronRight, Pause, Play, Zap, CandlestickChart, Target } from 'lucide-react';
-import { products, money } from '@/data/products';
+import { products, money, bundleOffer } from '@/data/products';
 import { supportHref, orbAccessHref } from '@/data/site-config';
 import { testimonials } from '@/data/testimonials';
 import { faqs } from '@/data/faqs';
 import { demos } from '@/data/demos';
-import { Reveal, SectionHeading } from '@/components/ui';
+import { SectionHeading } from '@/components/ui';
 import type { Product } from '@/types';
 
 export function AccessCTA({ className = '' }: { className?: string }) {
-  return <a href={orbAccessHref} className={'button button-primary access-cta ' + className} target="_blank" rel="noopener noreferrer">Get ORB Access</a>;
+  return <>
+    <a href={orbAccessHref} className={'button button-primary access-cta ' + className} target="_blank" rel="noopener noreferrer">Get ORB Access</a>
+    <div className="access-alternative"><WhatsAppLink/></div>
+  </>;
 }
 export function ReviewSummary() {
   const rated = testimonials.filter(review => review.rating !== undefined);
@@ -78,16 +82,16 @@ const features = [
   { icon: SlidersHorizontal, title: 'Product Configuration', copy: 'Request the product parameter list and confirm the available settings for your workflow.' },
   { icon: PanelsTopLeft, title: 'Platform Compatibility', copy: 'Confirm the supported execution platform and requirements before purchase.' },
   { icon: ShieldCheck, title: 'Risk Information', copy: 'Review drawdown context and the risks of automated trading before making a decision.' },
-  { icon: Headphones, title: 'Direct Telegram Contact', copy: 'Contact jinxlab directly for product information, access enquiries, and support details.' },
+  { icon: Headphones, title: 'Direct Contact', copy: 'Contact jinxlab on Telegram or WhatsApp for product information, access enquiries, and support.' },
 ];
 export function FeaturesSection() {
-  return <section className="section features-section" id="features"><div className="container"><SectionHeading eyebrow="" title="Explore the Details of" blue="Agent Jin V1">The evidence, information, and next steps in one place.</SectionHeading><div className="features-grid">{features.map(({icon:Icon,title,copy}) => <Reveal key={title}><article className="feature-card"><span className="feature-icon"><Icon size={21}/></span><h3>{title}</h3><p>{copy}</p></article></Reveal>)}</div></div></section>;
+  return <section className="section features-section" id="features"><div className="container"><SectionHeading eyebrow="" title="Explore the Details of" blue="Agent Jin V1">The evidence, information, and next steps in one place.</SectionHeading><div className="features-grid">{features.map(({icon:Icon,title,copy}) => <div key={title}><article className="feature-card"><span className="feature-icon"><Icon size={21}/></span><h3>{title}</h3><p>{copy}</p></article></div>)}</div></div></section>;
 }
 export function ProductArtwork({ product, priority = false }: { product: Product; priority?: boolean }) {
   return <div className="product-artwork"><Image src={product.image} alt={product.name + ' product artwork'} width={1440} height={988} sizes="(max-width:767px) 94vw, 560px" loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'}/></div>;
 }
 export function PurchaseAction({ product }: { product: Product }) {
-  return <><AccessCTA/><p className="purchase-note">Discuss {product.name} access on Telegram. No payment is collected here.</p></>;
+  return <><AccessCTA/><p className="purchase-note">Discuss {product.name} access on Telegram or WhatsApp. No payment is collected here.</p></>;
 }
 export function PricingSection() {
   return <section className="section pricing-section" id="pricing"><div className="container"><div id="products" className="anchor-point"/><div className="pricing-grid">{products.map(product => <article className="pricing-card" key={product.slug}>
@@ -98,10 +102,14 @@ export function PricingSection() {
     <PurchaseAction product={product}/>
     <Link className="product-details-link" href={'/products/' + product.slug + '/'}>View full product details<ArrowUpRight size={14}/></Link>
     <p className="pricing-terms">Confirm platform, license, delivery, and support terms before purchase.</p>
-  </article>)}</div></div></section>;
+  </article>)}<article className="pricing-card bundle-card">
+    <h2>Buy any 2 bots, get 1 free!</h2><p className="pricing-intro">Choose any two bots and receive the third free.<br/>Agent Jin V1, JinX ORB Scalper V2, and JinX Zoro.</p>
+    <div className="price-value"><s>{money(bundleOffer.originalPrice)}</s><strong>{money(bundleOffer.price)}<small>USD</small></strong><span className="discount-label">{bundleOffer.discountPercent}% OFF · Save {money(bundleOffer.savings)}</span></div>
+    <p className="offer-soon">Offer closes soon</p><p className="pricing-intro">All 3 bots for $600. Individual bots are $300 each.</p><AccessCTA/><p className="pricing-terms">Discuss bundle access and confirm product terms with jinxlab.</p>
+  </article></div></div></section>;
 }
 export function FAQSection() {
-  return <section className="section faq-section" id="faq"><div className="narrow-container"><SectionHeading eyebrow="" title="FAQ"/><div className="faq-list">{faqs.map((faq,index) => <details key={faq.q} className="faq-item" name="frequently-asked"><summary>{faq.q}<span className="faq-plus" aria-hidden="true"/></summary><div className="faq-answer"><p>{faq.a}</p>{index === 8 && <a href={supportHref} target="_blank" rel="noopener noreferrer">Contact jinxlab on Telegram<ArrowUpRight size={14}/></a>}</div></details>)}</div></div></section>;
+  return <section className="section faq-section" id="faq"><div className="narrow-container"><SectionHeading eyebrow="" title="FAQ"/><div className="faq-list">{faqs.map((faq,index) => <details key={faq.q} className="faq-item" name="frequently-asked"><summary>{faq.q}<span className="faq-plus" aria-hidden="true"/></summary><div className="faq-answer"><p>{faq.a}</p>{(index === 5 || index === 8) && <div className="support-options"><a href={supportHref} target="_blank" rel="noopener noreferrer">Contact jinxlab on Telegram<ArrowUpRight size={14}/></a><WhatsAppLink/></div>}</div></details>)}</div></div></section>;
 }
 export function FinalCTA() {
   return <section className="final-cta"><div className="container"><h2>Bring Structure to Your Trading.<br/><span>Start With One Clear Workflow.</span></h2><p>Explore Agent Jin V1 and JinX ORB Scalper V2 with jinxlab.</p><AccessCTA/><ReviewSummary/></div></section>;

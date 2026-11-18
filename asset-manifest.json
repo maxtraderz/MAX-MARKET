@@ -128,7 +128,11 @@
     "output": "public/videos/buy-demo.mp4",
     "processing": "H.264/AAC, 1440px wide, original aspect ratio and audio, faststart; metadata stripped",
     "poster": "public/images/demos/buy-poster.jpg",
-    "gif": "public/images/demos/buy-demo.gif"
+    "gif": "public/images/demos/buy-demo.gif",
+    "gif_source": "Screen Recording 2026-11-18 184216.mp4",
+    "poster_source": "Screen Recording 2026-11-18 184216.mp4",
+    "gif_processing": "Full supplied replacement recording; 15 fps, silent, infinitely looping GIF",
+    "gif_sha256": "3bde35f6e0fafc4c7ec5e16848cde505eb453fb047893cf0152c64e078d3fe2e"
   },
   {
     "source": "sell video_prob3.mp4",
@@ -136,7 +140,10 @@
     "processing": "H.264/AAC, 1440px wide, original aspect ratio and audio, faststart; metadata stripped",
     "poster": "public/images/demos/sell-poster.jpg",
     "gif": "public/images/demos/sell-demo.gif",
-    "gif_processing": "First 9 seconds only, 15 fps, 1080px wide, silent, looping"
+    "gif_processing": "Full supplied replacement recording; 15 fps, silent, infinitely looping GIF",
+    "gif_source": "Screen Recording 2026-11-18 185100.mp4",
+    "poster_source": "Screen Recording 2026-11-18 185100.mp4",
+    "gif_sha256": "06b71b6a1052282e3e4673e12f9cc205fd29c51db842a7df1f79cfc42940c534"
   },
   {
     "source": "Original product banner rendered from source commit ae31925a86c16f49e1de52f3f2fd94be5903696a; handwritten annotation excluded",
@@ -177,5 +184,12 @@
     "width": 1440,
     "height": 988,
     "sha256": "e0bfe9382780971d1edbd14ebda22ecccc0ffa102746800364bda41b21040b3f"
+  },
+  {
+    "source": "Original code-native JinX Zoro product artwork matching existing product cards",
+    "output": "public/images/products/jinx-zoro.svg",
+    "width": 1440,
+    "height": 988,
+    "sha256": "cc5e547087ad52dc1aad7b183fd1a4b30c4da796d389c803a926c724510213fe"
   }
 ]

@@ -4,7 +4,7 @@ import { ReviewSummary, AccessCTA } from '@/components/sections/Content';
 export function Hero() {
   const product = products[0];
   return <section className="hero" id="top"><div className="container hero-inner">
-    <h1>Automate with precision.<br/>Trade with discipline.<br/>Discover Agent Jin V1.</h1>
+    <h1>Automate with precision.<br/>Trade with discipline.<br/>Discover Jinx ORB.</h1>
     <VideoPlayer src={product.demoVideo!} poster={product.demoPoster!} label="AGENT JIN promotional video" hero/>
     <p className="hero-description">Explore a structured trading workflow with Agent Jin V1.<br className="desktop-break"/> Watch the supplied demonstrations and inspect the historical report.</p>
     <ReviewSummary/>

@@ -1,14 +1,10 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import type { ReactNode } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import { useReducedMotion } from 'motion/react';
 import { ArrowUpRight, ChevronLeft, ChevronRight, X, Pause, Play } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useCallback, useState } from 'react';
-export function Reveal({ children, className = '' }: { children: ReactNode; className?: string }) {
-  const reduced = useReducedMotion();
-  return <motion.div className={className} initial={false} whileInView={reduced ? {} : { opacity: [0.6, 1], y: [16, 0] }} viewport={{ once: true, amount: 0.08 }} transition={{ duration: 0.45 }}>{children}</motion.div>;
-}
 export function SectionHeading({ eyebrow, title, blue, children }: { eyebrow: string; title: string; blue?: string; children?: ReactNode }) {
   return <div className="section-heading"><span className="eyebrow"><span />{eyebrow}</span><h2>{title} {blue && <span className="text-blue">{blue}</span>}</h2>{children && <p>{children}</p>}</div>;
 }

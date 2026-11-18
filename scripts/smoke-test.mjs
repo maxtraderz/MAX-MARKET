@@ -26,17 +26,22 @@ try{
   page.on('response',r=>{if(r.status()>=400)console.log('HTTP '+r.status()+' '+r.url());});
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
   await page.goto(base,{waitUntil:'networkidle'});
-  await check('Homepage and two configured bot offers',async()=>{await page.getByRole('heading',{level:1}).waitFor();assert.match(await page.locator('#pricing').innerText(),/649/);assert.match(await page.locator('#pricing').innerText(),/800/);assert.match(await page.locator('#pricing').innerText(),/18.875%/);assert.equal(await page.locator('#pricing button:disabled').count(),0);});
-  await check('Both bots appear with separate product details',async()=>{
+  await check('Homepage and three configured bot offers and bundle',async()=>{await page.getByRole('heading',{level:1}).waitFor();assert.match(await page.locator('#pricing').innerText(),/300/);assert.match(await page.locator('#pricing').innerText(),/800/);assert.match(await page.locator('#pricing').innerText(),/62.5%/);assert.equal(await page.locator('#pricing button:disabled').count(),0);});
+  await check('All three bots appear with separate product details',async()=>{
     assert.match(await page.locator('#performance-panel').innerText(),/556,400.62/);
-    assert.equal(await page.locator('#pricing .product-details-link').count(),2);
-    assert.equal(await page.locator('#pricing .pricing-card').count(),2);
+    assert.equal(await page.locator('#pricing .product-details-link').count(),3);
+    assert.equal(await page.locator('#pricing .pricing-card').count(),4);
     const cards=page.locator('#pricing .pricing-card');
     assert.match(await cards.nth(0).innerText(),/Agent Jin V1/);
     assert.match(await cards.nth(1).innerText(),/JinX ORB Scalper V2/);
-    assert.match(await cards.nth(1).innerText(),/599/);
-    assert.match(await cards.nth(1).innerText(),/25%/);
-    assert.equal(await page.locator('#pricing .offer-soon').count(),2);
+    assert.match(await cards.nth(1).innerText(),/300/);
+    assert.match(await cards.nth(1).innerText(),/62.5%/);
+    assert.match(await cards.nth(2).innerText(),/JinX Zoro/);
+    assert.match(await cards.nth(2).innerText(),/300/);
+    assert.match(await cards.nth(3).innerText(),/600/);
+    assert.match(await cards.nth(3).innerText(),/75% OFF/);
+    assert.match(await cards.nth(3).innerText(),/1,800/);
+    assert.equal(await page.locator('#pricing .offer-soon').count(),4);
     assert.match(await fs.readFile('out/sitemap.xml','utf8'),/jinx-orb-scalper-v2/);
     assert.equal(await page.locator('#strategy [role=tab]').count(),2);
     assert.doesNotMatch(await page.locator('body').innerText(),/MAX BLUE|MAX FLUID/);
@@ -46,42 +51,18 @@ try{
       await assert.rejects(fs.access('out/images/products/'+slug+'.svg'));
     }
   });
-  await check('All nine public certificates; no source originals',async()=>{
-    const files=await fs.readdir('public/images/certificates');
-    assert.deepEqual(files.sort(),Array.from({length:9},(_,i)=>'proof-'+String(i+1).padStart(2,'0')+'.webp'));
-    assert.equal(await page.locator('#proof .proof-open').count(),9);
-    const certificate=page.locator('#proof .proof-card:not(.proof-showcase) .certificate-image').first();
-    const frame=await certificate.evaluate(el=>({ratio:el.getBoundingClientRect().width/el.parentElement.getBoundingClientRect().width,aspect:el.parentElement.getBoundingClientRect().width/el.parentElement.getBoundingClientRect().height}));
-    assert.ok(frame.ratio<0.83&&frame.ratio>0.8);assert.ok(Math.abs(frame.aspect-1.65)<0.01);
-    const manifest=JSON.parse(await fs.readFile('asset-manifest.json','utf8'));assert.equal(manifest.length,17);
-  });
-  await check('Proof carousel arrows and pagination',async()=>{
-    const c=page.locator('#proof .carousel').first();await c.scrollIntoViewIfNeeded();
-    await c.getByRole('button',{name:'Next slide',exact:true}).click();
-    await page.waitForFunction(()=>document.querySelector('#proof .dots button:nth-child(2)')?.getAttribute('aria-current')==='true');
-    await c.getByRole('button',{name:'Go to slide 1',exact:true}).click();
-  });
-  await check('Eight certificates in top two rows; third row contains only product banner',async()=>{
-    const rows=page.locator('#proof .proof-row');
-    assert.deepEqual(await rows.evaluateAll(items=>items.map(row=>row.querySelectorAll('.proof-open').length)),[4,4,1]);
-    assert.equal(await rows.nth(2).locator('.carousel-controls').count(),0);
-    const trigger=page.getByRole('button',{name:'Enlarge AGENT JIN product showcase',exact:true});
-    const img=trigger.locator('img');
-    assert.match(await img.getAttribute('src'),/agent-jin-banner-animated\.svg$/);
-    await img.evaluate(el=>el.decode());
-    const fit=await img.evaluate(el=>({image:el.getBoundingClientRect().width/el.getBoundingClientRect().height,native:el.naturalWidth/el.naturalHeight}));
-    assert.ok(Math.abs(fit.image-fit.native)<0.01,'Showcase fills its rectangle without letterboxing');
-    await trigger.click();
-    assert.match(await page.getByRole('dialog').innerText(),/Product showcase.*Agent Jin V1.*9 \/ 9/);
-    await page.keyboard.press('Escape');
-  });
-  await check('Lightbox keyboard, focus, escape and report enlargement',async()=>{
-    const trigger=page.locator('#proof .proof-open').first();await trigger.click();
-    const dialog=page.getByRole('dialog');await dialog.waitFor();assert.match(await dialog.innerText(),/1 \/ 9/);
-    await page.keyboard.press('ArrowRight');assert.match(await dialog.innerText(),/2 \/ 9/);
-    await page.keyboard.press('ArrowLeft');assert.match(await dialog.innerText(),/1 \/ 9/);
-    await page.keyboard.press('Escape');await dialog.waitFor({state:'hidden'});assert.equal(await trigger.evaluate(el=>el===document.activeElement),true);
-    await page.getByRole('button',{name:'Enlarge supplied Agent Jin historical report',exact:true}).click();await page.getByRole('dialog').waitFor();await page.keyboard.press('Escape');
+
+
+
+
+  await check('Simulated chart replaces certificates and supports replay controls',async()=>{
+    assert.equal(await page.locator('#proof .proof-card').count(),0);
+    assert.match(await page.locator('#proof').innerText(),/SIMULATED DATA/);
+    assert.doesNotMatch(await page.locator('#proof').textContent(), /Opening range|Example (entry|target|stop)|Interactive illustration|Move over the chart|Simulated chart for demonstration only/i);
+    await page.getByRole('button',{name:'15m',exact:true}).click();
+    assert.match(await page.locator('.market-readout').innerText(),/15m candles/);
+    await page.getByRole('button',{name:'Reset chart replay',exact:true}).click();
+    assert.equal(await page.locator('.market-candle').count(),36);
   });
   await check('Accessible single-open FAQ',async()=>{
     const questions=page.locator('#faq summary');await questions.nth(0).click();assert.equal(await page.locator('#faq details[open]').count(),1);
@@ -94,7 +75,7 @@ try{
     }
   });
   await check('Every product, contact and legal page at mobile and desktop widths',async()=>{
-    for(const route of ['/products/agent-jin/','/products/jinx-orb-scalper-v2/','/contact/','/legal/risk/','/legal/privacy/','/legal/terms/']){
+    for(const route of ['/products/agent-jin/','/products/jinx-orb-scalper-v2/','/products/jinx-zoro/','/contact/','/legal/risk/','/legal/privacy/','/legal/terms/']){
       for(const width of [390,1440]){await page.setViewportSize({width,height:950});const res=await page.goto(base+route,{waitUntil:'networkidle'});assert.equal(res.status(),200);assert.equal(await page.locator('h1').count(),1);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Overflow '+route+' at '+width);}
     }
   });
@@ -104,23 +85,7 @@ try{
     await page.locator('#main-nav').getByRole('link',{name:'Pricing',exact:true}).click();assert.equal(await page.getByRole('button',{name:'Open menu',exact:true}).getAttribute('aria-expanded'),'false');
     await page.getByRole('button',{name:'Open menu',exact:true}).click();await page.keyboard.press('Escape');assert.equal(await page.getByRole('button',{name:'Open menu',exact:true}).getAttribute('aria-expanded'),'false');
   });
-  await check('Mobile certificate swipe and touch lightbox navigation',async()=>{
-    const viewport=page.locator('#proof .carousel-viewport').first();await viewport.scrollIntoViewIfNeeded();
-    const box=await viewport.boundingBox();const cdp=await page.context().newCDPSession(page);
-    const x=box.x+box.width*.8,y=box.y+box.height*.5;
-    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
-    for(let i=1;i<=8;i++)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x-i*30,y}]});
-    await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
-    await page.waitForFunction(()=>document.querySelector('#proof .dots button[aria-current=true]')?.getAttribute('aria-label')!=='Go to slide 1');
-    await page.locator('#proof .dots button').first().click();
-    await page.locator('#proof .proof-open').first().click();
-    await page.locator('.lightbox-swipe').evaluate(el=>{
-      const make=x=>new Touch({identifier:1,target:el,clientX:x,clientY:200});
-      el.dispatchEvent(new TouchEvent('touchstart',{touches:[make(300)],bubbles:true}));
-      el.dispatchEvent(new TouchEvent('touchend',{changedTouches:[make(100)],bubbles:true}));
-    });
-    assert.match(await page.getByRole('dialog').innerText(),/2 \/ 9/);await page.keyboard.press('Escape');await cdp.detach();
-  });
+
   await check('All page image sources resolve; sitemap and robots',async()=>{
     const sources=await page.locator('img').evaluateAll(imgs=>[...new Set(imgs.map(i=>i.getAttribute('src')))]);
     for(const src of sources){const r=await page.request.get(base+src);assert.equal(r.status(),200,src);}
@@ -128,7 +93,6 @@ try{
   });
   await check('Reduced motion preference is respected',async()=>{assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).scrollBehavior),'auto');});
   await page.setViewportSize({width:1440,height:1050});await page.goto(base,{waitUntil:'networkidle'});await page.screenshot({path:'.local/desktop-final.png'});
-  for(const row of await page.locator('#proof .proof-row').all()){await row.scrollIntoViewIfNeeded();await row.locator('img').first().evaluate(img=>img.decode());}
   for(const id of ['performance','proof','reviews','strategy','pricing'])await page.locator('#'+id).screenshot({path:'.local/'+id+'-desktop.png',style:'.site-header,.skip-link{visibility:hidden!important}'});
   await page.setViewportSize({width:390,height:844});await page.goto(base,{waitUntil:'networkidle'});await page.screenshot({path:'.local/mobile-final.png'});await page.locator('#proof').screenshot({path:'.local/proof-mobile.png'});
   await check('Client navigation opens product detail pages',async()=>{
@@ -142,32 +106,7 @@ try{
     for(const heading of await doc.locator('#pricing h2').all()) assert.equal(await heading.isVisible(),true);
     await plain.close();
   });
-  await check('Three stacked rows, top two autoplay every 5 seconds, pause and reduced motion',async()=>{
-    await page.goto(base,{waitUntil:'networkidle'});
-    assert.equal(await page.locator('#proof .proof-row').count(),3);
-    const normal=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'no-preference'});
-    normal.on('pageerror',e=>errors.push(e.message));
-    await normal.clock.install({time:new Date('2026-10-24T00:00:00Z')});
-    await normal.clock.pauseAt(new Date('2026-10-24T00:00:01Z'));
-    await normal.goto(base,{waitUntil:'load'});
-    await normal.clock.runFor(100);
-    const rowPositions=await normal.locator('.proof-row').evaluateAll(rows=>rows.map(el=>({top:el.getBoundingClientRect().top,bottom:el.getBoundingClientRect().bottom})));
-    assert.equal(rowPositions.length,3);
-    assert.ok(rowPositions[0].bottom<rowPositions[1].top&&rowPositions[1].bottom<rowPositions[2].top);
-    const selected=()=>normal.locator('#proof .dots button[aria-current=true]').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('aria-label')));
-    await normal.clock.runFor(4800);
-    assert.deepEqual(await selected(),Array(2).fill('Go to slide 1'));
-    await normal.clock.runFor(300);
-    assert.deepEqual(await selected(),Array(2).fill('Go to slide 2'));
-    assert.equal(await normal.getByRole('tab',{name:'Sell demonstration',exact:true}).getAttribute('aria-selected'),'true');
-    const first=normal.locator('#proof .carousel').first();
-    await first.getByRole('button',{name:'Pause slideshow',exact:true}).click();
-    await normal.locator('.brand').first().focus();await normal.mouse.move(0,0);
-    await normal.clock.runFor(5500);
-    assert.equal((await selected())[0],'Go to slide 2');
-    await normal.close();
-    assert.equal(await page.locator('.autoplay-toggle').count(),0);
-  });
+
   await check('Montserrat, text-only jinxlab branding, hero placement and Telegram access',async()=>{
     await page.goto(base,{waitUntil:'networkidle'});
     assert.match(await page.locator('body').evaluate(el=>getComputedStyle(el).fontFamily),/^Montserrat/);
