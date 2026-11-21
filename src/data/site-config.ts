@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'jinxlab',
   url: 'https://jinzfx-market.paletiger16.chatgpt.site',
-  description: 'Explore premium trading automation systems, historical performance data, and an interactive simulated chart.',
+  description: 'Explore ORB EAs, historical performance data, and an interactive simulated chart.',
   contact: { email: 'jinzfx7@gmail.com' as string | null, url: 'https://t.me/jinzfx' as string | null },
   socials: { Telegram: 'https://t.me/jinzfx' as string | null, WhatsApp: 'https://wa.me/message/GZJG3KUXMAKBL1', Instagram: null as string | null },
   risk: 'Trading financial markets involves substantial risk and may result in financial loss. Automated trading systems do not guarantee profits. Historical results and backtests are not reliable indicators of future performance.',

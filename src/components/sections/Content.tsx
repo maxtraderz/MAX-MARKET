@@ -31,7 +31,7 @@ export function ReviewSummary() {
 export function TestimonialsSection() {
   const [all, setAll] = useState(false);
   return <section className="section reviews-section" id="reviews"><div className="container">
-    <SectionHeading eyebrow="" title="Trader Feedback on" blue="Agent Jin V1">Customer reviews supplied by jinxlab.</SectionHeading>
+    <SectionHeading eyebrow="" title="Trader Feedback on" blue="ORB EAs">Customer reviews supplied by jinxlab.</SectionHeading>
     <ReviewSummary/>
     <div className="review-grid">{testimonials.slice(0, all ? undefined : 6).map(review => <article className="review-card" key={review.id}>
       <div className="review-person"><span className="review-avatar">{review.displayName.split(' ').map(part => part[0]).join('')}</span><strong>{review.displayName}</strong>
@@ -55,7 +55,7 @@ export function StrategySection() {
   }, [stopped, interacting, focused, reduced]);
   const demo = demos[selected];
   return <section className="section strategy-section" id="strategy"><div className="container">
-    <SectionHeading eyebrow="" title="See Agent Jin V1 Map the" blue="Trade in Real Time">Watch the supplied buy and sell chart demonstrations.<br className="desktop-break"/> Explore the examples before discussing the system with jinxlab.</SectionHeading>
+    <SectionHeading eyebrow="" title="See ORB EAs Map a" blue="Trade in Real Time">Watch the supplied buy and sell chart demonstrations.<br className="desktop-break"/> Explore the examples before discussing the system with jinxlab.</SectionHeading>
     <div className="trade-demo" onMouseEnter={() => setInteracting(true)} onMouseLeave={() => setInteracting(false)} onFocusCapture={() => setFocused(true)} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}>
       <div className="demo-tabs" role="tablist" aria-label="Trade demonstration">{demos.map((item,index) => <button key={item.id} id={'demo-tab-' + item.id} role="tab" aria-selected={selected === index} tabIndex={selected === index ? 0 : -1} aria-controls="trade-demo-panel" onClick={() => setSelected(index)} onKeyDown={event => { if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return; event.preventDefault(); const next = event.key === 'Home' ? 0 : event.key === 'End' ? demos.length - 1 : (selected + 1) % demos.length; setSelected(next); document.getElementById('demo-tab-' + demos[next].id)?.focus(); }}>{item.label}</button>)}</div>
       <div className="demo-frame">
@@ -72,8 +72,8 @@ export function StrategySection() {
 }
 export function PerformanceNotes() {
   return <div className="workflow-notes">
-    <article><span className="feature-icon"><Zap size={20}/></span><div><h3>Manual or <span>Automated</span></h3><p>Discuss the execution mode, platform, and available settings for Agent Jin V1 with jinxlab.</p></div></article>
-    <article><span className="feature-icon"><CandlestickChart size={20}/></span><div><h3>Explore <span>Agent Jin V1</span></h3><p>A supplied historical report, buy and sell demonstrations, and one focused trading system.</p></div></article>
+    <article><span className="feature-icon"><Zap size={20}/></span><div><h3>Manual or <span>Automated</span></h3><p>Discuss execution modes, supported platforms, and available settings with jinxlab.</p></div></article>
+    <article><span className="feature-icon"><CandlestickChart size={20}/></span><div><h3>Explore <span>ORB EAs</span></h3><p>View the historical ORB report and watch buy and sell examples.</p></div></article>
   </div>;
 }
 const features = [
@@ -85,7 +85,7 @@ const features = [
   { icon: Headphones, title: 'Direct Contact', copy: 'Contact jinxlab on Telegram or WhatsApp for product information, access enquiries, and support.' },
 ];
 export function FeaturesSection() {
-  return <section className="section features-section" id="features"><div className="container"><SectionHeading eyebrow="" title="Explore the Details of" blue="Agent Jin V1">The evidence, information, and next steps in one place.</SectionHeading><div className="features-grid">{features.map(({icon:Icon,title,copy}) => <div key={title}><article className="feature-card"><span className="feature-icon"><Icon size={21}/></span><h3>{title}</h3><p>{copy}</p></article></div>)}</div></div></section>;
+  return <section className="section features-section" id="features"><div className="container"><SectionHeading eyebrow="" title="Explore Our" blue="ORB EAs">The evidence, information, and next steps in one place.</SectionHeading><div className="features-grid">{features.map(({icon:Icon,title,copy}) => <div key={title}><article className="feature-card"><span className="feature-icon"><Icon size={21}/></span><h3>{title}</h3><p>{copy}</p></article></div>)}</div></div></section>;
 }
 export function ProductArtwork({ product, priority = false }: { product: Product; priority?: boolean }) {
   return <div className="product-artwork"><Image src={product.image} alt={product.name + ' product artwork'} width={1440} height={988} sizes="(max-width:767px) 94vw, 560px" loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'}/></div>;
@@ -103,9 +103,9 @@ export function PricingSection() {
     <Link className="product-details-link" href={'/products/' + product.slug + '/'}>View full product details<ArrowUpRight size={14}/></Link>
     <p className="pricing-terms">Confirm platform, license, delivery, and support terms before purchase.</p>
   </article>)}<article className="pricing-card bundle-card">
-    <h2>Buy any 2 bots, get 1 free!</h2><p className="pricing-intro">Choose any two bots and receive the third free.<br/>Agent Jin V1, JinX ORB Scalper V2, and JinX Zoro.</p>
+    <h2>Buy any 2 ORB EAs, get 1 free!</h2><p className="pricing-intro">Choose any two ORB EAs and receive the third free.<br/>Agent Jin V1, JinX ORB Scalper V2, and JinX Zoro.</p>
     <div className="price-value"><s>{money(bundleOffer.originalPrice)}</s><strong>{money(bundleOffer.price)}<small>USD</small></strong><span className="discount-label">{bundleOffer.discountPercent}% OFF · Save {money(bundleOffer.savings)}</span></div>
-    <p className="offer-soon">Offer closes soon</p><p className="pricing-intro">All 3 bots for $600. Individual bots are $300 each.</p><AccessCTA/><p className="pricing-terms">Discuss bundle access and confirm product terms with jinxlab.</p>
+    <p className="offer-soon">Offer closes soon</p><p className="pricing-intro">All 3 ORB EAs for $600. Individual ORB EAs are $300 each.</p><AccessCTA/><p className="pricing-terms">Discuss bundle access and confirm product terms with jinxlab.</p>
   </article></div></div></section>;
 }
 export function FAQSection() {
