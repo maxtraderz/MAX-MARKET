@@ -77,7 +77,7 @@ export function PerformanceNotes() {
   </div>;
 }
 const features = [
-  { icon: ChartNoAxesCombined, title: 'Historical Performance', copy: 'Inspect the supplied v1.1 admin report with its period and limitations clearly stated.' },
+  { icon: ChartNoAxesCombined, title: 'Historical Performance', copy: 'Inspect the supplied JINZFX ORB report with its period and limitations clearly stated.' },
   { icon: CandlestickChart, title: 'Buy & Sell Demonstrations', copy: 'Explore both supplied buy and sell examples as looping GIF animations.' },
   { icon: SlidersHorizontal, title: 'Product Configuration', copy: 'Request the product parameter list and confirm the available settings for your workflow.' },
   { icon: PanelsTopLeft, title: 'Platform Compatibility', copy: 'Confirm the supported execution platform and requirements before purchase.' },

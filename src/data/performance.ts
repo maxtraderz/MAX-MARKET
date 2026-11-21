@@ -1,16 +1,16 @@
 export const performance = {
   'agent-jin': {
-    image: '/images/performance/agent-jin-report.webp',
-    title: 'AGENT JIN 1.1', status: 'Supplied historical report',
+    image: '/images/performance/jinzfx-orb-report.jpg',
+    title: 'JINZFX ORB', status: 'Supplied historical report',
     metrics: [
-      { label: 'Total PnL', value: '+$556,400.62', detail: '+556.40% return' },
-      { label: 'Max drawdown', value: '11.89%', detail: '$11,896.94 USD' },
-      { label: 'Profitable trades', value: '66.88%', detail: '2,348 / 3,511 trades' },
-      { label: 'Profit factor', value: '1.478', detail: 'As shown in supplied report' },
+      { label: 'Total PnL', value: '+$213,075.89', detail: '+2.13% return' },
+      { label: 'Max drawdown', value: '0.36%', detail: '$36,270.55 USD' },
+      { label: 'Profitable trades', value: '63.07%', detail: '2,815 / 4,463 trades' },
+      { label: 'Profit factor', value: '1.131', detail: 'As shown in supplied report' },
     ],
-    source: 'User-supplied Agent Jin 1.1 (ADMIN VERSION) screenshot.',
-    period: '2020–2026, as shown on the report axis; exact end date not supplied.',
+    source: 'Supplied JINZFX ORB screenshot, displayed in a light theme.',
+    period: '2022–2026, as labelled on the report axis.',
     platform: 'TradingView-style strategy report. Execution platform not confirmed.',
-    statusNote: 'Historical report; live versus backtest status has not been independently confirmed. This is a v1.1 admin report, not evidence of the advertised products performance.',
+    statusNote: 'Historical report; live versus backtest status has not been independently confirmed. The screenshot is labelled JINZFX ORB. The product version and trading conditions are unconfirmed.',
   },
 } as const;

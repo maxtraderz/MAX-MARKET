@@ -191,5 +191,23 @@
     "width": 1440,
     "height": 988,
     "sha256": "cc5e547087ad52dc1aad7b183fd1a4b30c4da796d389c803a926c724510213fe"
+  },
+  {
+    "source": "Agent-Jin-Promo-New-Audio-1920x1080.mp4",
+    "output": "public/videos/agent-jin-promo-new-audio.mp4",
+    "processing": "Full H.264 video and AAC audio preserved; faststart; file metadata removed",
+    "poster": "public/images/demos/agent-jin-promo-new-poster.jpg",
+    "duration_seconds": 183.6,
+    "width": 1920,
+    "height": 1080,
+    "sha256": "3d1903694bcd27b32ed829054f5a88ab2ebb1f4020e49ddbb78f3f612bdbbd50"
+  },
+  {
+    "source": "WhatsApp Image 2026-11-20 at 4.05.24 PM.jpeg",
+    "output": "public/images/performance/jinzfx-orb-report.jpg",
+    "processing": "Original JPEG; preview uses a light-theme display filter",
+    "width": 1600,
+    "height": 966,
+    "sha256": "2be8bc087a06468fe3a0e9578751f27f5c59c5a80b27e62e56c4afb80d49f5c0"
   }
 ]

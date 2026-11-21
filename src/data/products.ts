@@ -4,9 +4,9 @@ export const products: Product[] = [
     slug: 'agent-jin', name: 'Agent Jin V1', label: 'The signature system', version: '1',
     description: 'Explore Agent Jin V1, the supplied historical report, and the buy and sell demonstrations. Confirm its specification and execution platform before purchase.',
     color: '#1369f4', image: '/images/products/agent-jin-v1.svg',
-    platform: null, features: ['Historical v1.1 report available', 'Buy and sell demonstrations', 'Support on Telegram and WhatsApp'],
+    platform: null, features: ['Historical report available', 'Buy and sell demonstrations', 'Support on Telegram and WhatsApp'],
     price: 300, originalPrice: 800, discountPercent: 62.5, currency: 'USD', license: null,
-    checkoutUrl: null, demoVideo: '/videos/agent-jin-promo.mp4', demoPoster: '/images/demos/agent-jin-promo-poster.jpg',
+    checkoutUrl: null, demoVideo: '/videos/agent-jin-promo-new-audio.mp4', demoPoster: '/images/demos/agent-jin-promo-new-poster.jpg',
   },
   {
     slug: 'jinx-orb-scalper-v2', name: 'JinX ORB Scalper V2', label: 'The ORB scalper', version: '2',
